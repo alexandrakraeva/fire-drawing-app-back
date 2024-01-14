@@ -1,0 +1,16 @@
+﻿{
+    "name": "drawing-app",
+    "version": "1.0.0",
+    "description": "A simple drawing app",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "body-parser": "^1.19.0",
+        "@google-cloud/storage": "^5.8.5"
+    },
+    "author": "",
+    "license": "ISC"
+}
