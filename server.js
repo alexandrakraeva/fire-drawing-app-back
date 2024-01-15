@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Initialize Google Cloud Storage
 const storage = new Storage({
-    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
+    credentials: JSON.parse(GOOGLE_APPLICATION_CREDENTIALS_JSON)
 });
 const bucket = storage.bucket('fire-drawing-storage');
 
