@@ -5,7 +5,11 @@ const app = express();
 
 const PORT = 3000; // Define port 3000
 
-const storage = new Storage({ keyFilename: 'fifth-being-411122-0a641135f930.json' });
+const { Storage } = require('@google-cloud/storage');
+
+const storage = new Storage({
+    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
+});
 const bucket = storage.bucket('fire-drawing-storage');
 
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -28,6 +32,7 @@ app.post('/saveDrawing', async (req, res) => {
     }
 });
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
