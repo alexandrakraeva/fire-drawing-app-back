@@ -36,3 +36,17 @@ app.post('/saveDrawing', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+
+/////
+const storage = new Storage({
+    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
+});
+console.log('Credentials:', process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
+let credentials;
+try {
+    credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
+} catch (error) {
+    console.error('Failed to parse GOOGLE_APPLICATION_CREDENTIALS_JSON:', error);
+    // Handle the error appropriately
+}
