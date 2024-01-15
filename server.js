@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 // Initialize Google Cloud Storage
 const storage = new Storage({
-    credentials: JSON.parse(GOOGLE_APPLICATION_CREDENTIALS_JSON)
+    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
 });
 const bucket = storage.bucket('fire-drawing-storage');
 
@@ -38,15 +38,8 @@ app.listen(PORT, () => {
 });
 
 
-/////
-const storage = new Storage({
-    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
-});
-console.log('Credentials:', process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
-let credentials;
-try {
-    credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
-} catch (error) {
-    console.error('Failed to parse GOOGLE_APPLICATION_CREDENTIALS_JSON:', error);
-    // Handle the error appropriately
-}
+const corsOptions = {
+    origin: 'https://superficial-awesome-ferry.glitch.me', // Replace with your Glitch app's URL
+    methods: 'POST', // Allow only POST requests from this origin
+};
+app.use(cors(corsOptions));}
