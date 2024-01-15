@@ -38,8 +38,8 @@ app.listen(PORT, () => {
 });
 
 
-const corsOptions = {
+cconst corsOptions = {
     origin: 'https://superficial-awesome-ferry.glitch.me', // Replace with your Glitch app's URL
     methods: 'POST', // Allow only POST requests from this origin
 };
-app.use(cors(corsOptions));}
+app.use(cors(corsOptions));
