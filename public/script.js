@@ -115,7 +115,7 @@ canvas.addEventListener('touchend', (e) => {
 document.getElementById('submitBtn').addEventListener('click', function () {
     // Existing image submission code
     const dataURL = canvas.toDataURL('image/png');
-    fetch('https://llum-fireapp-backend-90a9524ac9d2.herokuapp.com/saveDrawing', {
+    fetch('https://llum-fireapp-bab3486ad7a0.herokuapp.com/saveDrawing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: dataURL })
