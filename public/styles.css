@@ -14,8 +14,8 @@ button {
     color: white;
     border: none;
     padding: 0;
-    width: 70px;
-    height: 40px;
+    width: 210px;
+    height: 150px;
     cursor: pointer;
     font-size: 35px;
 }
@@ -36,8 +36,8 @@ button {
 }
 
 input[type="color"] {
-    height: 200px; /* Increase the height */
-    width: 200px; /* Increase the width */
+    height: 150px; /* Increase the height */
+    width: 150px; /* Increase the width */
     border: none;
     cursor: pointer;
     margin-left: 35px;
