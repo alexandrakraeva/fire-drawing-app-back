@@ -20,8 +20,7 @@ app.use(cors(corsOptions));
 // Body parser middleware to handle JSON data
 app.use(bodyParser.json({ limit: '10mb' }));
 
-// Serve static files from 'public' directory
-app.use(express.static('public'));
+
 
 // Initialize Google Cloud Storage
 const keyFilename = 'fifth-being-411122-73c1efffad5b.json'; // Replace with the actual path
