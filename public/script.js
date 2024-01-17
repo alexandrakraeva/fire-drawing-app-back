@@ -55,13 +55,13 @@ function draw(x, y) {
 // Undo function
 function undo() {
     if (strokes.length === 0) return;
-    strokes.pop();
-    redrawCanvas();
+    strokes.pop(); // Remove the last stroke
+    redrawCanvas(); // Redraw the canvas without the last stroke
 }
 
 // Function to redraw the canvas based on the strokes array
 function redrawCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas first
     strokes.forEach(stroke => {
         ctx.beginPath();
         ctx.moveTo(stroke.x1, stroke.y1);
@@ -71,6 +71,7 @@ function redrawCanvas() {
         ctx.stroke();
     });
 }
+
 
 // PART 5: MOUSE AND TOUCH EVENT LISTENERS
 
