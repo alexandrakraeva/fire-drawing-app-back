@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // Configure CORS options
 const corsOptions = {
-    origin: 'https://superficial-awesome-ferry.glitch.me:3000', // Replace with your front-end URL
+    origin: 'https://superficial-awesome-ferry.glitch.me', // Replace with your front-end URL
     methods: 'POST', // Allow only POST requests from this origin
 };
 

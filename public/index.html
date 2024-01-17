@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Drawing App</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <!-- Initial state -->
+    <div class="initial-state">
+        <h1 class="fade-out">Draw a Fire</h1>
+    </div>
+
+    <!-- Second state (hidden by default) -->
+    <div class="second-state">
+        <canvas id="drawingCanvas" width="600" height="600"></canvas>
+        <div id="controls">
+            <div class="control-container">
+                <div class="control-group">
+                    <input type="color" id="colorPicker" value="#000000">
+                </div>
+                <div class="control-group">
+                    <input type="range" id="thicknessSlider" min="1" max="10" value="2">
+                </div>
+                <div class="control-group">
+                    <button id="submitBtn">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+</body>
+</html>
