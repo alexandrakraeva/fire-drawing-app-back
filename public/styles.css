@@ -15,8 +15,9 @@ button {
     background-color: black;
     color: white;
     border: none;
-    padding: 20px 30px;
+    padding: 50px 50px;
     cursor: pointer;
+    font-size: 15px;
 }
 
 #controls {
@@ -31,7 +32,7 @@ button {
 }
 
 .control-group {
-    margin-right: 20px;
+    margin-right: 40px;
 }
 
 input[type="range"] {
