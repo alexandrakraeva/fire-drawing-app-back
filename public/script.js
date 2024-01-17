@@ -45,18 +45,31 @@ app.post('/saveDrawing', async (req, res) => {
 });
 
 
+// Handle the transition from initial state to drawing state
 document.addEventListener('DOMContentLoaded', () => {
-    const initialState = document.querySelector('.initial-state');
-    const secondState = document.querySelector('.second-state');
+    // Your existing transition code...
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    let transitionHandled = false; // Flag to track if the transition is already handled
 
     setTimeout(() => {
-        initialState.classList.add('fade-out');
-    }, 2000); // Delay the fade-out to allow initial state to be visible for 2 seconds
+        const initialState = document.querySelector('.initial-state');
+        const secondState = document.querySelector('.second-state');
 
-    initialState.addEventListener('animationend', () => {
-        initialState.style.display = 'none';
-        secondState.style.display = 'block';
-    });
+        if (!transitionHandled) {
+            transitionHandled = true;
+            initialState.style.opacity = 0;
+            initialState.addEventListener('transitionend', () => {
+                initialState.style.display = 'none';
+                secondState.style.display = 'block';
+                setTimeout(() => {
+                    secondState.style.opacity = 1;
+                }, 50); // Add a slight delay to improve the transition effect
+            });
+        }
+    }, 2000); // Wait 2 seconds before fading out the initial state
 });
 
 
