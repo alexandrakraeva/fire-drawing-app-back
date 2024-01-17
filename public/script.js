@@ -44,3 +44,24 @@ app.post('/saveDrawing', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    let transitionHandled = false; // Flag to track if the transition is already handled
+
+    setTimeout(() => {
+        const initialState = document.querySelector('.initial-state');
+        const secondState = document.querySelector('.second-state');
+
+        if (!transitionHandled) {
+            transitionHandled = true;
+            initialState.style.opacity = 0;
+            initialState.addEventListener('transitionend', () => {
+                initialState.style.display = 'none';
+                secondState.style.display = 'block';
+                setTimeout(() => {
+                    secondState.style.opacity = 1;
+                }, 50); // Add a slight delay to improve the transition effect
+            });
+        }
+    }, 2000); // Wait 2 seconds before fading out the initial state
+});
