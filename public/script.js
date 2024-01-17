@@ -1,31 +1,42 @@
-﻿const canvas = document.getElementById('drawingCanvas');
-const ctx = canvas.getContext('2d');
-let isDrawing = false;
-let lastX, lastY;
-let strokeColor = '#000000'; // Default color
-let strokeWidth = 2; // Default thickness
-let strokes = []; // To store all the strokes
-let redoStack = []; // To store strokes for redo
+﻿// PART 1: SETUP AND INITIAL VARIABLES
 
-// Update stroke color
+// Get the canvas element and set up the 2D drawing context
+const canvas = document.getElementById('drawingCanvas');
+const ctx = canvas.getContext('2d');
+
+// Variables to track drawing state
+let isDrawing = false; // Boolean to check if drawing is in progress
+let lastX, lastY; // Coordinates of the last point drawn
+let strokeColor = '#000000'; // Default color for the stroke
+let strokeWidth = 2; // Default thickness of the stroke
+let strokes = []; // Array to store all the strokes for undo functionality
+
+// PART 2: EVENT LISTENERS FOR COLOR AND THICKNESS ADJUSTMENTS
+
+// Update stroke color based on user input
 document.getElementById('colorPicker').addEventListener('input', (e) => {
     strokeColor = e.target.value;
 });
 
-// Update stroke thickness
+// Update stroke thickness based on user input
 document.getElementById('thicknessSlider').addEventListener('input', (e) => {
     strokeWidth = parseInt(e.target.value);
 });
 
+// PART 3: DRAWING FUNCTIONS
+
+// Function to start drawing
 function startDrawing(x, y) {
     isDrawing = true;
     [lastX, lastY] = [x, y];
 }
 
+// Function to stop drawing
 function stopDrawing() {
     isDrawing = false;
 }
 
+// Function to draw on the canvas
 function draw(x, y) {
     if (!isDrawing) return;
     ctx.beginPath();
@@ -35,20 +46,16 @@ function draw(x, y) {
     ctx.lineWidth = strokeWidth;
     ctx.stroke();
     [lastX, lastY] = [x, y];
+    // Record each stroke for undo functionality
     strokes.push({ x1: lastX, y1: lastY, x2: x, y2: y, color: strokeColor, width: strokeWidth });
 }
+
+// PART 4: UNDO FUNCTIONALITY
 
 // Undo function
 function undo() {
     if (strokes.length === 0) return;
-    redoStack.push(strokes.pop());
-    redrawCanvas();
-}
-
-// Redo function
-function redo() {
-    if (redoStack.length === 0) return;
-    strokes.push(redoStack.pop());
+    strokes.pop();
     redrawCanvas();
 }
 
@@ -65,6 +72,9 @@ function redrawCanvas() {
     });
 }
 
+// PART 5: MOUSE AND TOUCH EVENT LISTENERS
+
+// Mouse event listeners
 canvas.addEventListener('mousedown', (e) => {
     const { left, top } = canvas.getBoundingClientRect();
     startDrawing(e.clientX - left, e.clientY - top);
@@ -78,6 +88,7 @@ canvas.addEventListener('mousemove', (e) => {
 canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
 
+// Touch event listeners
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault(); // Prevent default behavior
     const touch = e.touches[0];
@@ -98,6 +109,9 @@ canvas.addEventListener('touchend', (e) => {
     stopDrawing();
 });
 
+// PART 6: ADDITIONAL FUNCTIONALITY
+
+// Event listener for image submission
 document.getElementById('submitBtn').addEventListener('click', function () {
     const dataURL = canvas.toDataURL('image/png');
     fetch('https://llum-fireapp-backend-90a9524ac9d2.herokuapp.com/saveDrawing', { // Replace with your Heroku app's URL
@@ -110,6 +124,5 @@ document.getElementById('submitBtn').addEventListener('click', function () {
         .catch(error => console.error('Error:', error));
 });
 
-// Add event listeners to the new buttons
+// Event listener for the undo button
 document.getElementById('undoBtn').addEventListener('click', undo);
-document.getElementById('redoBtn').addEventListener('click', redo);
