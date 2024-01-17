@@ -91,3 +91,18 @@ input[type="range"] {
     justify-content: center;
     align-items: center;
 }
+
+
+#fadeInText {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    color: black;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}

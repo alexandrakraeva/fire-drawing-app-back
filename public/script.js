@@ -147,7 +147,7 @@ function fadeOutScreen() {
 
     // Set the styles for the thank-you message
     const message = document.createElement('div');
-    message.innerHTML = 'Thank you!<br>Your masterpiece is submitted'; // Using <br> for line break
+    message.innerHTML = 'Thank you!<br>Your masterpiece was submitted'; // Using <br> for line break
     message.style.color = 'white';
     message.style.fontSize = '40px';
     message.style.fontFamily = 'Helvetica, Arial, sans-serif'; // Helvetica with fallbacks
@@ -171,5 +171,12 @@ function fadeOutScreen() {
 // Event listener for the undo button
 document.getElementById('undoBtn').addEventListener('click', undo);
 
-// Event listener for the undo button
-document.getElementById('undoBtn').addEventListener('click', undo);
+document.addEventListener('DOMContentLoaded', (event) => {
+    const fadeInText = document.getElementById('fadeInText');
+    fadeInText.style.display = 'block';
+    setTimeout(() => {
+        fadeInText.style.opacity = 1;
+    }, 100);
+});
+
+
