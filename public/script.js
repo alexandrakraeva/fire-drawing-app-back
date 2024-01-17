@@ -147,14 +147,19 @@ function fadeOutScreen() {
 
     // Set the styles for the thank-you message
     const message = document.createElement('div');
-    message.textContent = 'Thank you! Your masterpiece is submitted';
+    message.innerHTML = 'Thank you!<br>Your masterpiece is submitted'; // Using <br> for line break
     message.style.color = 'white';
     message.style.fontSize = '40px';
+    message.style.fontFamily = 'Helvetica, Arial, sans-serif'; // Helvetica with fallbacks
     message.style.textAlign = 'center';
     message.style.position = 'absolute';
     message.style.top = '50%';
     message.style.left = '50%';
     message.style.transform = 'translate(-50%, -50%)';
+    message.style.display = 'flex';
+    message.style.flexDirection = 'column';
+    message.style.justifyContent = 'center';
+    message.style.alignItems = 'center';
     overlay.appendChild(message);
 
     // Start the fade-out effect

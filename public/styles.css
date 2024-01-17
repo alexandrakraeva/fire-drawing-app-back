@@ -10,6 +10,7 @@
     height: 150px;
     cursor: pointer;
     font-size: 35px;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 canvas {
@@ -78,6 +79,7 @@ input[type="range"] {
     align-items: center;
     font-size: 25px;
     text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
     border: none;
     cursor: pointer;
     border-radius: 50%; /* Makes it a circle */
