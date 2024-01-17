@@ -1,47 +1,103 @@
-﻿const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { Storage } = require('@google-cloud/storage');
+﻿const canvas = document.getElementById('drawingCanvas');
+const ctx = canvas.getContext('2d');
+let isDrawing = false;
+let lastX, lastY;
+let strokeColor = '#000000'; // Default color
+let strokeWidth = 2; // Default thickness
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-
-
-
-
-// Initialize Google Cloud Storage
-const storage = new Storage({
-    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
-});
-const bucketName = 'fire-drawing-storage'; // Replace with your actual bucket name
-const bucket = storage.bucket(bucketName);
-
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(express.static('public'));
-app.use(cors());
-
-const corsOptions = {
-    origin: 'http://localhost:3000', // Replace with your frontend URL
-    methods: 'POST', // Allow only POST requests from this origin
-};
-app.use(cors(corsOptions));
-
-app.post('/saveDrawing', async (req, res) => {
-    const dataURL = req.body.image;
-    const base64EncodedImageString = dataURL.split(';base64,').pop();
-    const filename = `drawing-${Date.now()}.png`;
-
-    try {
-        const file = bucket.file(filename);
-        await file.save(Buffer.from(base64EncodedImageString, 'base64'), {
-            metadata: { contentType: 'image/png' },
-        });
-        const publicUrl = `https://storage.googleapis.com/${bucketName}/${filename}`;
-        res.send({ message: 'Drawing saved successfully!', filename, publicUrl });
-    } catch (error) {
-        console.error('Error saving the drawing:', error);
-        res.status(500).send('Error saving the drawing.');
-    }
+// Update stroke color
+document.getElementById('colorPicker').addEventListener('input', (e) => {
+    strokeColor = e.target.value;
 });
 
+// Update stroke thickness
+document.getElementById('thicknessSlider').addEventListener('input', (e) => {
+    strokeWidth = parseInt(e.target.value);
+});
+
+function startDrawing(x, y) {
+    isDrawing = true;
+    [lastX, lastY] = [x, y];
+}
+
+function stopDrawing() {
+    isDrawing = false;
+}
+
+function draw(x, y) {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = strokeColor;
+    ctx.lineWidth = strokeWidth;
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
+}
+
+canvas.addEventListener('mousedown', (e) => {
+    const { left, top } = canvas.getBoundingClientRect();
+    startDrawing(e.clientX - left, e.clientY - top);
+});
+
+canvas.addEventListener('mousemove', (e) => {
+    const { left, top } = canvas.getBoundingClientRect();
+    draw(e.clientX - left, e.clientY - top);
+});
+
+canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('mouseout', stopDrawing);
+
+canvas.addEventListener('touchstart', (e) => {
+    const touch = e.touches[0];
+    const { left, top } = canvas.getBoundingClientRect();
+    startDrawing(touch.clientX - left, touch.clientY - top);
+});
+
+canvas.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    const { left, top } = canvas.getBoundingClientRect();
+    draw(touch.clientX - left, touch.clientY - top);
+});
+
+canvas.addEventListener('touchend', stopDrawing);
+
+document.getElementById('submitBtn').addEventListener('click', function () {
+    const dataURL = canvas.toDataURL('image/png');
+    fetch('https://llum-fireapp-backend-90a9524ac9d2.herokuapp.com/saveDrawing', { // Replace with your Heroku app's URL
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: dataURL })
+    })
+        .then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch(error => console.error('Error:', error));
+});
+
+// Handle the transition from initial state to drawing state
+document.addEventListener('DOMContentLoaded', () => {
+    // Your existing transition code...
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    let transitionHandled = false; // Flag to track if the transition is already handled
+
+    setTimeout(() => {
+        const initialState = document.querySelector('.initial-state');
+        const secondState = document.querySelector('.second-state');
+
+        if (!transitionHandled) {
+            transitionHandled = true;
+            initialState.style.opacity = 0;
+            initialState.addEventListener('transitionend', () => {
+                initialState.style.display = 'none';
+                secondState.style.display = 'block';
+                setTimeout(() => {
+                    secondState.style.opacity = 1;
+                }, 50); // Add a slight delay to improve the transition effect
+            });
+        }
+    }, 2000); // Wait 2 seconds before fading out the initial state
+});
 
