@@ -34,6 +34,10 @@ function startDrawing(x, y) {
 // Function to stop drawing
 function stopDrawing() {
     isDrawing = false;
+    if (lastX !== undefined && lastY !== undefined) {
+        // Record the stroke when drawing stops
+        strokes.push({ x1: lastX, y1: lastY, x2: x, y2: y, color: strokeColor, width: strokeWidth });
+    }
 }
 
 // Function to draw on the canvas
@@ -46,8 +50,6 @@ function draw(x, y) {
     ctx.lineWidth = strokeWidth;
     ctx.stroke();
     [lastX, lastY] = [x, y];
-    // Record each stroke for undo functionality
-    strokes.push({ x1: lastX, y1: lastY, x2: x, y2: y, color: strokeColor, width: strokeWidth });
 }
 
 // PART 4: UNDO FUNCTIONALITY
@@ -61,7 +63,7 @@ function undo() {
 
 // Function to redraw the canvas based on the strokes array
 function redrawCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas first
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
     strokes.forEach(stroke => {
         ctx.beginPath();
         ctx.moveTo(stroke.x1, stroke.y1);
