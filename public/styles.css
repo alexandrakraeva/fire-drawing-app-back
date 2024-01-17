@@ -8,12 +8,12 @@ canvas {
 
 button {
     display: block;
-    margin-left: auto; /* Align to the right */
+    margin-left: 15px;
     margin-top: 10px;
     background-color: black;
     color: white;
     border: none;
-    padding: 70px 40px;
+    padding: 70px 60px;
     cursor: pointer;
     font-size: 35px;
 }
@@ -26,6 +26,7 @@ button {
 .control-container {
     display: flex;
     justify-content: space-between; /* Adjust alignment */
+     /**/
 }
 
 .control-group {
@@ -33,7 +34,7 @@ button {
 }
 
 input[type="color"] {
-    height: 50px; /* Increase the height */
+    height: 100px; /* Increase the height */
     width: 100px; /* Increase the width */
     border: none;
     cursor: pointer;
@@ -43,7 +44,7 @@ input[type="range"] {
     -webkit-appearance: none;
     width: 300px; /* Make the slider bigger */
     background: transparent;
-    height: 4px; /* Make the slider thicker */
+    height: 10px; /* Make the slider thicker */
     border-radius: 2px;
     border: 1px solid black;
     margin: 0 auto; /* Center the slider */
@@ -51,8 +52,8 @@ input[type="range"] {
 
     input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 20px; /* Make the thumb bigger */
-        height: 20px; /* Make the thumb bigger */
+        width: 30px; /* Make the thumb bigger */
+        height: 30px; /* Make the thumb bigger */
         background: black;
         border: 1px solid black;
         border-radius: 50%;
