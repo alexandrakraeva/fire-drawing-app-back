@@ -13,7 +13,9 @@ button {
     background-color: black;
     color: white;
     border: none;
-    padding: 60px 40px;
+    padding: 0;
+    width: 70px;
+    height: 40px;
     cursor: pointer;
     font-size: 35px;
 }
@@ -49,7 +51,7 @@ input[type="range"] {
     border-radius: 2px;
     border: 1px solid black;
     margin: 0 auto; /* Center the slider */
-    margin-top: 60px;
+    margin-top: 80px;
 }
 
     input[type="range"]::-webkit-slider-thumb {
