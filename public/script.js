@@ -113,8 +113,9 @@ canvas.addEventListener('touchend', (e) => {
 
 // Event listener for image submission
 document.getElementById('submitBtn').addEventListener('click', function () {
+    // Existing image submission code
     const dataURL = canvas.toDataURL('image/png');
-    fetch('https://llum-fireapp-backend-90a9524ac9d2.herokuapp.com/saveDrawing', { // Replace with your Heroku app's URL
+    fetch('https://llum-fireapp-backend-90a9524ac9d2.herokuapp.com/saveDrawing', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ image: dataURL })
@@ -122,7 +123,48 @@ document.getElementById('submitBtn').addEventListener('click', function () {
         .then(response => response.json())
         .then(data => console.log('Success:', data))
         .catch(error => console.error('Error:', error));
+
+    // Call the fade-out screen function
+    fadeOutScreen();
 });
+
+function fadeOutScreen() {
+    // Create a black overlay div
+    const overlay = document.createElement('div');
+    overlay.id = 'overlay';
+    document.body.appendChild(overlay);
+
+    // Set the styles for the fade-out effect
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'black';
+    overlay.style.opacity = '0';
+    overlay.style.transition = 'opacity 2s';
+    overlay.style.display = 'flex';
+
+    // Set the styles for the thank-you message
+    const message = document.createElement('div');
+    message.textContent = 'Thank you! Your masterpiece is submitted';
+    message.style.color = 'white';
+    message.style.fontSize = '40px';
+    message.style.textAlign = 'center';
+    message.style.position = 'absolute';
+    message.style.top = '50%';
+    message.style.left = '50%';
+    message.style.transform = 'translate(-50%, -50%)';
+    overlay.appendChild(message);
+
+    // Start the fade-out effect
+    setTimeout(() => {
+        overlay.style.opacity = '1';
+    }, 100);
+}
+
+// Event listener for the undo button
+document.getElementById('undoBtn').addEventListener('click', undo);
 
 // Event listener for the undo button
 document.getElementById('undoBtn').addEventListener('click', undo);
