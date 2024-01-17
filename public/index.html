@@ -5,7 +5,13 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <!-- Canvas and controls are visible from the start -->
+    <!-- Undo and Redo buttons -->
+    <div id="undoRedoContainer">
+        <button id="undoBtn">Undo</button>
+        <button id="redoBtn">Redo</button>
+    </div>
+
+    <!-- Canvas and controls -->
     <div class="second-state">
         <canvas id="drawingCanvas" width="900" height="1400"></canvas>
         <div id="controls">
