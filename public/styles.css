@@ -1,4 +1,8 @@
 ﻿/* Adjusted styles */
+.second-state {
+    display: block; /* Visible from the start */
+}
+
 
 canvas {
     border: 1px solid black;

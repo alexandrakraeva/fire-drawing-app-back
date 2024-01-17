@@ -4,6 +4,8 @@ let isDrawing = false;
 let lastX, lastY;
 let strokeColor = '#000000'; // Default color
 let strokeWidth = 2; // Default thickness
+let strokes = []; // To store all the strokes
+let redoStack = []; // To store strokes for redo
 
 // Update stroke color
 document.getElementById('colorPicker').addEventListener('input', (e) => {
@@ -24,9 +26,6 @@ function stopDrawing() {
     isDrawing = false;
 }
 
-let strokes = []; // To store all the strokes
-let redoStack = []; // To store strokes for redo
-
 function draw(x, y) {
     if (!isDrawing) return;
     ctx.beginPath();
@@ -36,9 +35,7 @@ function draw(x, y) {
     ctx.lineWidth = strokeWidth;
     ctx.stroke();
     [lastX, lastY] = [x, y];
-    if (isDrawing) {
-        strokes.push({ x1: lastX, y1: lastY, x2: x, y2: y, color: strokeColor, width: strokeWidth });
-    }
+    strokes.push({ x1: lastX, y1: lastY, x2: x, y2: y, color: strokeColor, width: strokeWidth });
 }
 
 // Undo function
@@ -66,11 +63,6 @@ function redrawCanvas() {
         ctx.lineWidth = stroke.width;
         ctx.stroke();
     });
-}
-
-// Add event listeners to the new buttons
-document.getElementById('undoBtn').addEventListener('click', undo);
-document.getElementById('redoBtn').addEventListener('click', redo);
 }
 
 canvas.addEventListener('mousedown', (e) => {
@@ -112,29 +104,6 @@ document.getElementById('submitBtn').addEventListener('click', function () {
         .catch(error => console.error('Error:', error));
 });
 
-// Handle the transition from initial state to drawing state
-document.addEventListener('DOMContentLoaded', () => {
-    // Your existing transition code...
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    let transitionHandled = false; // Flag to track if the transition is already handled
-
-    setTimeout(() => {
-        const initialState = document.querySelector('.initial-state');
-        const secondState = document.querySelector('.second-state');
-
-        if (!transitionHandled) {
-            transitionHandled = true;
-            initialState.style.opacity = 0;
-            initialState.addEventListener('transitionend', () => {
-                initialState.style.display = 'none';
-                secondState.style.display = 'block';
-                setTimeout(() => {
-                    secondState.style.opacity = 1;
-                }, 50); // Add a slight delay to improve the transition effect
-            });
-        }
-    }, 2000); // Wait 2 seconds before fading out the initial state
-});
+// Add event listeners to the new buttons
+document.getElementById('undoBtn').addEventListener('click', undo);
+document.getElementById('redoBtn').addEventListener('click', redo);
