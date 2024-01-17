@@ -147,7 +147,7 @@ function fadeOutScreen() {
 
     // Set the styles for the thank-you message
     const message = document.createElement('div');
-    message.innerHTML = 'Thank you!<br>Your masterpiece was submitted'; // Using <br> for line break
+    message.innerHTML = 'THANK YOU!<br>YOUR MASTERPIECE WAS SUBMITTED'; // Using <br> for line break
     message.style.color = 'white';
     message.style.fontSize = '40px';
     message.style.fontFamily = 'Helvetica, Arial, sans-serif'; // Helvetica with fallbacks
@@ -176,7 +176,7 @@ function fadeOutInitialOverlay() {
     overlay.style.opacity = '0';
     setTimeout(() => {
         overlay.style.display = 'none';
-    }, 2000); // Matches the transition time in CSS
+    }, 1000); // Matches the transition time in CSS
 }
 
 // Call the fade out function after a short delay
