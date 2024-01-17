@@ -171,12 +171,17 @@ function fadeOutScreen() {
 // Event listener for the undo button
 document.getElementById('undoBtn').addEventListener('click', undo);
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    const fadeInText = document.getElementById('fadeInText');
-    fadeInText.style.display = 'block';
+function fadeOutInitialOverlay() {
+    const overlay = document.getElementById('initialOverlay');
+    overlay.style.opacity = '0';
     setTimeout(() => {
-        fadeInText.style.opacity = 1;
-    }, 100);
+        overlay.style.display = 'none';
+    }, 2000); // Matches the transition time in CSS
+}
+
+// Call the fade out function after a short delay
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(fadeOutInitialOverlay, 2000); // Adjust the delay as needed
 });
 
 
