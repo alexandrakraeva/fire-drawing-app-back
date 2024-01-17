@@ -79,18 +79,24 @@ canvas.addEventListener('mouseup', stopDrawing);
 canvas.addEventListener('mouseout', stopDrawing);
 
 canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault(); // Prevent default behavior
     const touch = e.touches[0];
     const { left, top } = canvas.getBoundingClientRect();
     startDrawing(touch.clientX - left, touch.clientY - top);
 });
 
 canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault(); // Prevent default behavior
+    if (e.touches.length > 1) return; // Ignore if multiple touches
     const touch = e.touches[0];
     const { left, top } = canvas.getBoundingClientRect();
     draw(touch.clientX - left, touch.clientY - top);
 });
 
-canvas.addEventListener('touchend', stopDrawing);
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault(); // Prevent default behavior
+    stopDrawing();
+});
 
 document.getElementById('submitBtn').addEventListener('click', function () {
     const dataURL = canvas.toDataURL('image/png');
