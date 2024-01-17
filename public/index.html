@@ -7,19 +7,19 @@
 <body>
     <!-- Canvas and controls are visible from the start -->
     <div class="second-state">
+        <div class="control-group">
+            <button id="submitBtn">SUBMIT DRAWING</button>
+        </div>
         <canvas id="drawingCanvas" width="900" height="1400"></canvas>
         <div id="controls">
             <div class="control-container">
                 <div class="control-group">
                     <input type="color" id="colorPicker" value="#000000">
                 </div>
-                <button id="undoBtn">ERASE</button>
                 <div class="control-group">
                     <input type="range" id="thicknessSlider" min="1" max="30" value="2">
                 </div>
-                <div class="control-group">
-                    <button id="submitBtn">Submit</button>
-                </div>
+                <button id="undoBtn">ERASE</button>
             </div>
         </div>
     </div>
