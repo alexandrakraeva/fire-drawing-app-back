@@ -1,9 +1,9 @@
 ﻿/* Initial state styles */
 .initial-state {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    opacity: 1;
-    transition: opacity 2s ease-in-out; /* Transition effect for opacity */
     position: absolute;
     top: 0;
     left: 0;
@@ -11,32 +11,32 @@
     bottom: 0;
     background-color: black;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
     z-index: 1;
+    opacity: 1;
+    transition: opacity 2s ease-in-out;
 }
 
-.fade-out {
-    animation: fadeOut 2s; /* Animation for fading out */
-}
-
-/* Animation keyframes */
+/* Animation keyframes for fade-out */
 @keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
     to {
         opacity: 0;
     }
 }
 
+/* Applying the fade-out animation to the initial state */
+.initial-state.fade-out {
+    animation: fadeOut 2s forwards;
+}
+
 /* Second state styles (hidden by default) */
 .second-state {
     display: none;
+    /* Additional styles for the second state go here */
 }
+
+/* Rest of your CSS for canvas, button, controls, etc. */
+
 
 canvas {
     border: 1px solid black;

@@ -6,6 +6,9 @@ const { Storage } = require('@google-cloud/storage');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+
+
+
 // Initialize Google Cloud Storage
 const storage = new Storage({
     credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON)
@@ -41,26 +44,28 @@ app.post('/saveDrawing', async (req, res) => {
     }
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const initialState = document.querySelector('.initial-state');
+    const secondState = document.querySelector('.second-state');
+
+    setTimeout(() => {
+        initialState.classList.add('fade-out');
+    }, 2000); // Delay the fade-out to allow initial state to be visible for 2 seconds
+
+    initialState.addEventListener('animationend', () => {
+        initialState.style.display = 'none';
+        secondState.style.display = 'block';
+    });
+});
+
+
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-        const initialState = document.querySelector('.initial-state');
-        const secondState = document.querySelector('.second-state');
 
-        // Add the fade-out class to trigger the CSS animation
-        initialState.classList.add('fade-out');
-
-        // Listen for the end of the fade-out animation
-        initialState.addEventListener('animationend', () => {
-            // Once the fade-out is complete, change the display properties
-            initialState.style.display = 'none';
-            secondState.style.display = 'block';
-        });
-    }, 2000); // Wait 2 seconds before starting the fade-out animation
-});
 
 
 
