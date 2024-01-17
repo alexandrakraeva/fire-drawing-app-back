@@ -1,42 +1,7 @@
-﻿/* Initial state styles */
-.initial-state {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: black;
-    color: white;
-    height: 100%;
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 2s ease-in-out;
-}
-
-/* Animation keyframes for fade-out */
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-    }
-}
-
-/* Applying the fade-out animation to the initial state */
-.initial-state.fade-out {
-    animation: fadeOut 2s forwards;
-}
-
-/* Second state styles (hidden by default) */
+﻿/* Second state styles */
 .second-state {
-    display: none;
-    /* Additional styles for the second state go here */
+    display: block; /* Visible from the start */
 }
-
-/* Rest of your CSS for canvas, button, controls, etc. */
-
 
 canvas {
     border: 1px solid black;
@@ -68,29 +33,6 @@ button {
 .control-group {
     margin-right: 20px;
 }
-
-/* Style for the square color picker container */
-.color-picker-container {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-}
-
-    .color-picker-container input[type="color"] {
-        width: 100%;
-        height: 100%;
-        border: none;
-        appearance: none;
-        cursor: pointer;
-        opacity: 0;
-    }
 
 input[type="range"] {
     -webkit-appearance: none;
