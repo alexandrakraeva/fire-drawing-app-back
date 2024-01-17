@@ -8,12 +8,12 @@ canvas {
 
 button {
     display: block;
-    margin-right: 45px;
+    margin-right: 40px;
     margin-top: 10px;
     background-color: black;
     color: white;
     border: none;
-    padding: 70px 60px;
+    padding: 60px 40px;
     cursor: pointer;
     font-size: 35px;
 }
@@ -38,16 +38,18 @@ input[type="color"] {
     width: 100px; /* Increase the width */
     border: none;
     cursor: pointer;
+    margin-left: 40px;
 }
 
 input[type="range"] {
     -webkit-appearance: none;
-    width: 300px; /* Make the slider bigger */
+    width: 400px; /* Make the slider bigger */
     background: transparent;
     height: 10px; /* Make the slider thicker */
     border-radius: 2px;
     border: 1px solid black;
     margin: 0 auto; /* Center the slider */
+    margin-top: 60px;
 }
 
     input[type="range"]::-webkit-slider-thumb {
