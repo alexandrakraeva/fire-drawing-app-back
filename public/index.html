@@ -5,13 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/styles.css">
 </head>
 <body>
-    <!-- Undo and Redo buttons -->
-    <div id="undoRedoContainer">
-        <button id="undoBtn">Undo</button>
-        <button id="redoBtn">Redo</button>
-    </div>
-
-    <!-- Canvas and controls -->
+    <!-- Canvas and controls are visible from the start -->
     <div class="second-state">
         <canvas id="drawingCanvas" width="900" height="1400"></canvas>
         <div id="controls">
@@ -19,6 +13,8 @@
                 <div class="control-group">
                     <input type="color" id="colorPicker" value="#000000">
                 </div>
+                <button id="undoBtn">Undo</button>
+                <button id="redoBtn">Redo</button>
                 <div class="control-group">
                     <input type="range" id="thicknessSlider" min="1" max="10" value="2">
                 </div>

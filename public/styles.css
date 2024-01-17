@@ -6,19 +6,6 @@ canvas {
     margin: 0 auto;
 }
 
-#undoRedoContainer {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-#undoBtn, #redoBtn {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin: 0 5px;
-}
-
 button {
     display: block;
     margin-right: 35px;
@@ -40,16 +27,17 @@ button {
 
 .control-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Adjust alignment */
+    /**/
 }
 
 .control-group {
-    /* Additional styles as needed */
+    /* Adjust as needed for positioning */
 }
 
 input[type="color"] {
-    height: 150px;
-    width: 150px;
+    height: 150px; /* Increase the height */
+    width: 150px; /* Increase the width */
     border: none;
     cursor: pointer;
     margin-left: 35px;
@@ -57,21 +45,30 @@ input[type="color"] {
 
 input[type="range"] {
     -webkit-appearance: none;
-    width: 400px;
+    width: 400px; /* Make the slider bigger */
     background: transparent;
-    height: 10px;
+    height: 10px; /* Make the slider thicker */
     border-radius: 2px;
     border: 1px solid black;
-    margin: 0 auto;
+    margin: 0 auto; /* Center the slider */
     margin-top: 80px;
 }
 
     input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 30px;
-        height: 30px;
+        width: 30px; /* Make the thumb bigger */
+        height: 30px; /* Make the thumb bigger */
         background: black;
         border: 1px solid black;
         border-radius: 50%;
         cursor: pointer;
     }
+
+
+#undoBtn, #redoBtn {
+    background-color: #f0f0f0;
+    color: black;
+    margin: 10px;
+    padding: 10px;
+}
+
